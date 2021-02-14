@@ -46,6 +46,6 @@ const controls = new THREE.OrbitControls( camera, document.body );
 function animate () {
     requestAnimationFrame(animate);
     renderer.render(scene,camera); 
-    //obj.rotation.y += 0.005 ;
+    obj.rotation.y += 0.005 ;
 }
 animate();
