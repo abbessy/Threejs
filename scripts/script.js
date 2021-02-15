@@ -12,8 +12,8 @@ let camera = new THREE.PerspectiveCamera(fov,aspect,near,far);
 camera.position.set(500,100,50);
 
 //renderer
-let renderer = new THREE.WebGLRenderer();
-renderer.setSize (window.innerWidth, window.innerHeight) ;
+let renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize (window.innerWidth/2, window.innerHeight-100) ;
 document.body.appendChild(renderer.domElement) ;
 
 //loader 
@@ -25,7 +25,7 @@ loader.load("fridge/scene.gltf", function(gltf) {
 }) ; 
 
 //change scene background
-scene.background = new THREE.Color(0x2F324B) ;
+//scene.background = new THREE.Color(0xffffff) ;
 
 //light
 let light = new THREE.HemisphereLight(0xffffff,0x000000,2) ; 
@@ -34,7 +34,7 @@ scene.add(light);
 
 //fix the window resize problem 
 window.addEventListener('resize', function(){
-    renderer.setSize(window.innerWidth,window.innerHeight) ; 
+    renderer.setSize(window.innerWidth/2,window.innerHeight-100) ; 
     camera.aspect = window.innerWidth / window.innerHeight ; 
     camera.updateProjectionMatrix();
 }) ;
@@ -46,6 +46,6 @@ const controls = new THREE.OrbitControls( camera, document.body );
 function animate () {
     requestAnimationFrame(animate);
     renderer.render(scene,camera); 
-    obj.rotation.y += 0.005 ;
+    //obj.rotation.y += 0.005 ;
 }
 animate();
